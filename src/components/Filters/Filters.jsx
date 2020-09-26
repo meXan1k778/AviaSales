@@ -1,26 +1,63 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import {
+  setZeroTransfer,
+  setAllTransfer,
+  setSingleTransfer,
+  setDoubleTransfer,
+  setTrippleTransfer,
+} from '../actions/actions';
 
-const Filters = () => {
+const Filters = ({
+  isZero,
+  isAll,
+  isOne,
+  isTwo,
+  isThree,
+  setZeroTransfer,
+  setAllTransfer,
+  setSingleTransfer,
+  setDoubleTransfer,
+  setTrippleTransfer,
+}) => {
   return (
     <div className="content__filters">
       <p>КОЛИЧЕСТВО ПЕРЕСАДОК</p>
       <label className="content__label">
-        <input type="checkbox" /> Все
+        <input type="checkbox" onChange={setAllTransfer} checked={isAll} /> Все
       </label>
       <label className="content__label">
-        <input type="checkbox" /> Без пересадок
+        <input type="checkbox" onChange={setZeroTransfer} checked={isZero} /> Без пересадок
       </label>
       <label className="content__label">
-        <input type="checkbox" /> 1 пересадка
+        <input type="checkbox" onChange={setSingleTransfer} checked={isOne} /> 1 пересадка
       </label>
       <label className="content__label">
-        <input type="checkbox" /> 2 пересадки
+        <input type="checkbox" onChange={setDoubleTransfer} checked={isTwo} /> 2 пересадки
       </label>
       <label className="content__label">
-        <input type="checkbox" /> 3 пересадки
+        <input type="checkbox" onChange={setTrippleTransfer} checked={isThree} /> 3 пересадки
       </label>
     </div>
   );
 };
 
-export default Filters;
+const mapStateToProps = (state) => {
+  return {
+    isAll: state.isAll,
+    isZero: state.isZero,
+    isOne: state.isOne,
+    isTwo: state.isTwo,
+    isThree: state.isThree,
+  };
+};
+
+const mapDispatchToProps = {
+  setZeroTransfer,
+  setAllTransfer,
+  setSingleTransfer,
+  setDoubleTransfer,
+  setTrippleTransfer,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Filters);
