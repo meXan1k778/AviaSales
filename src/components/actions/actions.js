@@ -5,6 +5,12 @@ const ticketsLoaded = (array) => {
   };
 };
 
+const allTicketsLoaded = () => {
+  return {
+    type: 'ALL_TICKETS_LOADED',
+  };
+};
+
 const setCheapSort = () => {
   return {
     type: 'cheap',
@@ -52,6 +58,19 @@ const setZeroTransfer = () => {
   };
 };
 
+const setSearchId = (id) => {
+  return {
+    type: 'SEARCH_ID',
+    payload: id,
+  };
+};
+
+const setError = () => {
+  return {
+    type: 'ERROR',
+  };
+};
+
 export {
   ticketsLoaded,
   setCheapSort,
@@ -61,4 +80,7 @@ export {
   setSingleTransfer,
   setDoubleTransfer,
   setTrippleTransfer,
+  setSearchId,
+  allTicketsLoaded,
+  setError,
 };

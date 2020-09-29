@@ -1,15 +1,22 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
-
-import icon from '../../img/S7logo.png';
+import formatDate from '../../utils/utils';
 
 const Ticket = ({ data }) => {
-  const { price, segments } = data;
+  const { price, segments, carrier } = data;
+
+  const timeFront = formatDate(new Date(segments[0].duration * 60000));
+  const timeBack = formatDate(new Date(segments[1].duration * 60000));
+
+  const arrivalTime = new Date(segments[0].date);
+  // console.log(segments[0].date);
+  // console.log(formatDate(arrivalTime));
+
   return (
     <div className="content__ticket">
       <div className="content__row">
         <p className="content__row--price">{price} Р</p>
-        <img className="content__row--img" src={icon} alt="no img" />
+        <img className="content__row--img" src={`http://pics.avs.io/99/36/${carrier}.png`} alt="no img" />
       </div>
       <div className="content__row">
         <div className="content__description">
@@ -18,11 +25,11 @@ const Ticket = ({ data }) => {
         </div>
         <div className="content__description">
           <p className="content__description--title">В ПУТИ</p>
-          <p className="content__description--text">{segments[0].duration} мин</p>
+          <p className="content__description--text">{timeFront}</p>
         </div>
         <div className="content__description">
           <p className="content__description--title">{segments[0].stops.length} ПЕРЕСАДКИ</p>
-          <p className="content__description--text">GFH</p>
+          <p className="content__description--text">{segments[0].stops.join(',')}</p>
         </div>
       </div>
       <div className="content__row">
@@ -32,7 +39,7 @@ const Ticket = ({ data }) => {
         </div>
         <div className="content__description">
           <p className="content__description--title">В ПУТИ</p>
-          <p className="content__description--text">{segments[1].duration} мин</p>
+          <p className="content__description--text">{timeBack}</p>
         </div>
         <div className="content__description">
           <p className="content__description--title">{segments[1].stops.length} ПЕРЕСАДКИ</p>

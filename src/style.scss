@@ -57,7 +57,7 @@ body {
   button {
     background-color: #ffffff;
     border: 1px solid #dfe5ec;
-    padding: 15px 69.5px;
+    padding: 15px 73px;
     font-size: 12px;
     &:active,
     &:focus {
@@ -101,4 +101,9 @@ body {
       line-height: 21px;
     }
   }
+}
+
+.ant-spin {
+  display: block;
+  margin: 20px;
 }

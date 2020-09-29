@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable no-shadow */
 import React from 'react';
 import { connect } from 'react-redux';
 import {
