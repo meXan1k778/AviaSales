@@ -3,11 +3,11 @@ const initialState = {
   tickets: [],
   visibleTickets: [],
   sortValue: '',
-  isAll: true,
-  isZero: true,
-  isOne: true,
-  isTwo: true,
-  isThree: true,
+  isAll: false,
+  isZero: false,
+  isOne: false,
+  isTwo: false,
+  isThree: false,
   isAllLoaded: false,
   isError: false,
 };
@@ -25,7 +25,6 @@ const reducer = (state = initialState, action) => {
     return {
       ...state,
       tickets: [...state.tickets, ...action.payload],
-      visibleTickets: [...state.visibleTickets, ...action.payload],
     };
   }
 
@@ -47,7 +46,7 @@ const reducer = (state = initialState, action) => {
     return { ...state, visibleTickets: sortedTickets, sortValue: 'cheap' };
   }
 
-  if (action.type === 'FILTER' || action.type === 'tickets_loaded') {
+  if (action.type === 'FILTER') {
     let zeroTrigger = action.payload === 'zero' ? !state.isZero : state.isZero;
     let singleTrigger = action.payload === 'one' ? !state.isOne : state.isOne;
     let doubleTrigger = action.payload === 'two' ? !state.isTwo : state.isTwo;

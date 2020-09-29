@@ -10,7 +10,6 @@ const composeEnhancers =
     : compose;
 
 const logMiddleWare = () => (dispatch) => (action) => {
-  console.log(action.type, action.payload);
   return dispatch(action);
 };
 

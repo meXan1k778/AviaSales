@@ -4,6 +4,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { setCheapSort, setFastSort } from '../actions/actions';
 
+import './buttons.scss';
+
 const Buttons = ({ setCheapSort, setFastSort }) => {
   return (
     <>

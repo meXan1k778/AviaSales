@@ -10,6 +10,8 @@ import {
   setTrippleTransfer,
 } from '../actions/actions';
 
+import './filter.scss';
+
 const Filters = ({
   isZero,
   isAll,

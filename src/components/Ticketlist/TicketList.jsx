@@ -50,11 +50,13 @@ class TicketList extends React.Component {
     const loader = this.props.isAllLoaded || this.props.isError || <Spin />;
 
     const content =
-      this.props.isError && !this.props.tickets ? (
+      this.props.isError && this.props.visibleTickets.length === 0 ? (
         <Alert message="Error" description="Cant load data... Reload page or try later" type="error" showIcon />
       ) : (
         elements
       );
+
+    if (content.length === 0) return <div>No results on your request...</div>;
     return (
       <>
         {loader}

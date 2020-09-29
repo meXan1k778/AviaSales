@@ -1,0 +1,38 @@
+.content__buttons {
+  width: 502px;
+  height: 30px;
+  margin-bottom: 20px;
+  .content__first-button {
+    border-radius: 6px 0 0 6px;
+    margin-right: -1px;
+  }
+  .content__second-button {
+    border-radius: 0 6px 6px 0;
+    margin-left: -1px;
+  }
+  button {
+    background-color: #ffffff;
+    border: 1px solid #dfe5ec;
+    padding: 15px 73px;
+    font-size: 12px;
+    &:active,
+    &:focus {
+      outline: none;
+      background-color: #2196f3;
+    }
+    &:hover {
+      background-color: rgba($color: #92d0f5, $alpha: 0.5);
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .content__buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 300px;
+    padding: 5px 40px;
+    margin: 0 10px;
+  }
+}
