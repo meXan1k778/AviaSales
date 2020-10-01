@@ -2,7 +2,7 @@ import React from 'react';
 
 import Filters from '../Filters/Filters';
 import Logo from '../Logo/Logo';
-import Buttons from '../Buttons/buttons';
+import Buttons from '../Buttons/Buttons';
 
 import TicketList from '../Ticketlist/TicketList';
 
