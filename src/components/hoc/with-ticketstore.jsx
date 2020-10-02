@@ -1,17 +1,17 @@
 import React from 'react';
 
-import { TicketConsumer } from '../ticketstore-context/ticketstore-context';
+import { TicketConsumer } from '../Ticketstore-context/Ticketstore-context';
 
-const withTicketStore = () => (Wrapped) => {
+const withTicketService = () => (Wrapped) => {
   return (props) => {
     return (
       <TicketConsumer>
-        {(ticketStore) => {
-          return <Wrapped {...props} ticketStore={ticketStore} />;
+        {(ticketService) => {
+          return <Wrapped {...props} ticketService={ticketService} />;
         }}
       </TicketConsumer>
     );
   };
 };
 
-export default withTicketStore;
+export default withTicketService;

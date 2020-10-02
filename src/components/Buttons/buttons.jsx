@@ -2,7 +2,7 @@
 /* eslint-disable no-shadow */
 import React from 'react';
 import { connect } from 'react-redux';
-import { setCheapSort, setFastSort } from '../actions/actions';
+import { setCheapSort, setFastSort } from '../../actions/actions';
 
 import './buttons.scss';
 

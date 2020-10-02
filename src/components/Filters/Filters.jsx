@@ -8,16 +8,12 @@ import {
   setSingleTransfer,
   setDoubleTransfer,
   setTrippleTransfer,
-} from '../actions/actions';
+} from '../../actions/actions';
 
 import './filter.scss';
 
 const Filters = ({
-  isZero,
-  isAll,
-  isOne,
-  isTwo,
-  isThree,
+  filtersReducer,
   setZeroTransfer,
   setAllTransfer,
   setSingleTransfer,
@@ -28,19 +24,19 @@ const Filters = ({
     <div className="content__filters">
       <p>КОЛИЧЕСТВО ПЕРЕСАДОК</p>
       <label className="content__label">
-        <input type="checkbox" onChange={setAllTransfer} checked={isAll} /> Все
+        <input type="checkbox" onChange={setAllTransfer} checked={filtersReducer.isAll} /> Все
       </label>
       <label className="content__label">
-        <input type="checkbox" onChange={setZeroTransfer} checked={isZero} /> Без пересадок
+        <input type="checkbox" onChange={setZeroTransfer} checked={filtersReducer.isZero} /> Без пересадок
       </label>
       <label className="content__label">
-        <input type="checkbox" onChange={setSingleTransfer} checked={isOne} /> 1 пересадка
+        <input type="checkbox" onChange={setSingleTransfer} checked={filtersReducer.isOne} /> 1 пересадка
       </label>
       <label className="content__label">
-        <input type="checkbox" onChange={setDoubleTransfer} checked={isTwo} /> 2 пересадки
+        <input type="checkbox" onChange={setDoubleTransfer} checked={filtersReducer.isTwo} /> 2 пересадки
       </label>
       <label className="content__label">
-        <input type="checkbox" onChange={setTrippleTransfer} checked={isThree} /> 3 пересадки
+        <input type="checkbox" onChange={setTrippleTransfer} checked={filtersReducer.isThree} /> 3 пересадки
       </label>
     </div>
   );
@@ -48,11 +44,7 @@ const Filters = ({
 
 const mapStateToProps = (state) => {
   return {
-    isAll: state.isAll,
-    isZero: state.isZero,
-    isOne: state.isOne,
-    isTwo: state.isTwo,
-    isThree: state.isThree,
+    filtersReducer: state.filtersReducer,
   };
 };
 

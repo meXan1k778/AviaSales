@@ -1,4 +1,4 @@
-export default class TicketStore {
+export default class TicketService {
   async getSessionId() {
     const res = await fetch('https://aviasales-test-api.java-mentor.com/search');
     if (!res.ok) {
@@ -18,5 +18,17 @@ export default class TicketStore {
     const result = await res.json();
 
     return result;
+  }
+
+  circleFetch(id, load, finish, dispatch) {
+    this.getTickets(id)
+      .then((data) => {
+        dispatch(load(data.tickets));
+        if (!data.stop) {
+          return this.circleFetch(id, load, finish, dispatch);
+        }
+        return dispatch(finish());
+      })
+      .catch(() => this.circleFetch(id, load, finish, dispatch));
   }
 }

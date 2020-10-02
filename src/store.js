@@ -1,6 +1,7 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 
-import reducer from './reducer/reducer';
+import reduxThunk from 'redux-thunk';
+import combineReducers from './reducers/reducer';
 
 const composeEnhancers =
   typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
@@ -9,10 +10,6 @@ const composeEnhancers =
       })
     : compose;
 
-const logMiddleWare = () => (dispatch) => (action) => {
-  return dispatch(action);
-};
-
-const store = createStore(reducer, composeEnhancers(applyMiddleware(logMiddleWare)));
+const store = createStore(combineReducers, composeEnhancers(applyMiddleware(reduxThunk)));
 
 export default store;

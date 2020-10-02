@@ -1,3 +1,7 @@
+import TicketService from '../services/ticketservice';
+
+const ticketService = new TicketService();
+
 const ticketsLoaded = (array) => {
   return {
     type: 'tickets_loaded',
@@ -25,49 +29,55 @@ const setFastSort = () => {
 
 const setAllTransfer = () => {
   return {
-    type: 'FILTER',
-    payload: 'all',
+    type: 'ALL_FILTER',
   };
 };
 
 const setSingleTransfer = () => {
   return {
-    type: 'FILTER',
-    payload: 'one',
+    type: 'ONE_FILTER',
   };
 };
 
 const setDoubleTransfer = () => {
   return {
-    type: 'FILTER',
-    payload: 'two',
+    type: 'TWO_FILTER',
   };
 };
 
 const setTrippleTransfer = () => {
   return {
-    type: 'FILTER',
-    payload: 'three',
+    type: 'TRHEE_FILTER',
   };
 };
 
 const setZeroTransfer = () => {
   return {
-    type: 'FILTER',
-    payload: 'zero',
-  };
-};
-
-const setSearchId = (id) => {
-  return {
-    type: 'SEARCH_ID',
-    payload: id,
+    type: 'ZERO_FILTER',
   };
 };
 
 const setError = () => {
   return {
     type: 'ERROR',
+  };
+};
+
+const loadData = () => {
+  return (dispatch) => {
+    ticketService
+      .getSessionId()
+      .then((res) =>
+        ticketService
+          .getTickets(res.searchId)
+          .then((data) => {
+            dispatch(ticketsLoaded(data.tickets));
+            return res.searchId;
+          })
+          .catch(() => setError())
+      )
+      .then((id) => ticketService.circleFetch(id, ticketsLoaded, allTicketsLoaded, dispatch))
+      .catch(() => setError());
   };
 };
 
@@ -80,7 +90,7 @@ export {
   setSingleTransfer,
   setDoubleTransfer,
   setTrippleTransfer,
-  setSearchId,
   allTicketsLoaded,
   setError,
+  loadData,
 };
